@@ -44,20 +44,20 @@ const Arrow = ({ direction, color, active }) => {
         { transform: [{ scale: scaleAnim }] },
       ]}
     >
-      <AntDesign name={getIconName()} size={24} color={color} />
+      <AntDesign name={getIconName()} size="100%" color={color} />
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   arrowContainer: {
-    width: '22%',
+    width: '23%',
     aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F0F0F0',
     borderRadius: 10,
-    margin: '1.5%',
+    margin: '1%',
   },
 });
 

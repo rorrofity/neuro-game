@@ -23,15 +23,15 @@ const Board = ({ currentArrow }) => {
 
 const styles = StyleSheet.create({
   board: {
-    width: Dimensions.get('window').width * 0.9,
-    height: Dimensions.get('window').width * 0.9,
+    width: '100%',
+    aspectRatio: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignContent: 'space-between',
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
-    padding: 10,
+    padding: '2%',
     elevation: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
