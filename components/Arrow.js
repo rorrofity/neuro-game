@@ -51,13 +51,13 @@ const Arrow = ({ direction, color, active }) => {
 
 const styles = StyleSheet.create({
   arrowContainer: {
-    width: '23%',
+    width: '22%',
     aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F0F0F0',
     borderRadius: 10,
-    margin: '1%',
+    margin: '1.5%',
   },
 });
 
