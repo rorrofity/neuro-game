@@ -17,16 +17,29 @@ const Game = () => {
     setCurrentArrow(null);
   };
 
+  const [currentPosition, setCurrentPosition] = useState(0);
+
   const generateNewArrow = () => {
-    const directions = ['Up', 'Down', 'Left', 'Right'];
-    const colors = ['#FF6B6B', '#4ECDC4', '#FFA500', '#9B59B6'];
-    const newArrow = {
-      direction: directions[Math.floor(Math.random() * directions.length)],
-      color: colors[Math.floor(Math.random() * colors.length)],
-      position: Math.floor(Math.random() * 16),
-    };
-    setCurrentArrow(newArrow);
+    if (currentPosition < 16) {
+      const directions = ['Up', 'Down', 'Left', 'Right'];
+      const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
+      const newArrow = {
+        direction: directions[Math.floor(Math.random() * directions.length)],
+        color: colors[Math.floor(Math.random() * colors.length)],
+        position: currentPosition,
+      };
+      setCurrentArrow(newArrow);
+      setCurrentPosition(currentPosition + 1);
+    } else {
+      finishGame();
+    }
   };
+
+  useEffect(() => {
+    if (gameStarted) {
+      generateNewArrow();
+    }
+  }, [gameStarted]);
 
   return (
     <View style={styles.container}>

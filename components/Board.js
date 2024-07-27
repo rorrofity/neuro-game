@@ -3,22 +3,18 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import Arrow from './Arrow';
 
 const Board = ({ currentArrow }) => {
-  const renderArrows = () => {
-    const arrows = [];
-    for (let i = 0; i < 16; i++) {
-      arrows.push(
+  return (
+    <View style={styles.board}>
+      {[...Array(16)].map((_, i) => (
         <Arrow
           key={i}
           direction={currentArrow && currentArrow.position === i ? currentArrow.direction : null}
-          color={currentArrow && currentArrow.position === i ? currentArrow.color : 'gray'}
+          color={currentArrow && currentArrow.position === i ? currentArrow.color : '#E0E0E0'}
           active={currentArrow && currentArrow.position === i}
         />
-      );
-    }
-    return arrows;
-  };
-
-  return <View style={styles.board}>{renderArrows()}</View>;
+      ))}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
