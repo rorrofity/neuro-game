@@ -19,7 +19,7 @@ const Game = () => {
 
   const generateNewArrow = () => {
     const directions = ['Up', 'Down', 'Left', 'Right'];
-    const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A'];
+    const colors = ['#FF6B6B', '#4ECDC4', '#FFA500', '#9B59B6'];
     const newArrow = {
       direction: directions[Math.floor(Math.random() * directions.length)],
       color: colors[Math.floor(Math.random() * colors.length)],

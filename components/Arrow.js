@@ -9,7 +9,7 @@ const Arrow = ({ direction, color, active }) => {
     if (active) {
       Animated.sequence([
         Animated.timing(scaleAnim, {
-          toValue: 1.2,
+          toValue: 1.1,
           duration: 200,
           useNativeDriver: true,
         }),
@@ -41,23 +41,22 @@ const Arrow = ({ direction, color, active }) => {
     <Animated.View
       style={[
         styles.arrowContainer,
-        { transform: [{ scale: scaleAnim }] },
+        { transform: [{ scale: scaleAnim }], backgroundColor: color },
       ]}
     >
-      <AntDesign name={getIconName()} size="100%" color={color} />
+      <AntDesign name={getIconName()} size={48} color="#FFFFFF" />
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   arrowContainer: {
-    width: '22%',
+    width: '23%',
     aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F0F0F0',
     borderRadius: 10,
-    margin: '1.5%',
+    margin: '1%',
   },
 });
 
