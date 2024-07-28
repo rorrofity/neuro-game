@@ -2,20 +2,34 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Arrow from './Arrow';
 
-const Board = ({ currentArrow }) => {
+const Board = ({ currentArrow, arrows }) => {
   return (
     <View style={styles.board}>
       {[...Array(4)].map((_, rowIndex) => (
         <View key={rowIndex} style={styles.row}>
           {[...Array(4)].map((_, colIndex) => {
             const index = rowIndex * 4 + colIndex;
+            let arrowProps;
+
+            if (arrows) {
+              // Level 2: All arrows are visible
+              arrowProps = {
+                direction: arrows[index].direction,
+                color: arrows[index].color,
+                active: arrows[index].color !== '#E0E0E0',
+              };
+            } else {
+              // Level 1: Only current arrow is visible
+              arrowProps = {
+                direction: currentArrow && currentArrow.position === index ? currentArrow.direction : null,
+                color: currentArrow && currentArrow.position === index ? currentArrow.color : '#E0E0E0',
+                active: currentArrow && currentArrow.position === index,
+              };
+            }
+
             return (
               <View key={colIndex} style={styles.cell}>
-                <Arrow
-                  direction={currentArrow && currentArrow.position === index ? currentArrow.direction : null}
-                  color={currentArrow && currentArrow.position === index ? currentArrow.color : '#E0E0E0'}
-                  active={currentArrow && currentArrow.position === index}
-                />
+                <Arrow {...arrowProps} />
               </View>
             );
           })}
