@@ -26,7 +26,7 @@ const Game = () => {
     setCurrentPosition(0);
     setColorHistory([]);
     setTimerActive(false);
-    setTimerKey(prevKey => prevKey + 1);
+    setTimerKey(prevKey => prevKey + 1); // This will reset the timer
     setArrows(generateInitialArrows());
     setTimeout(() => setTimerActive(true), 0);
     if (currentLevel === 1) {
@@ -41,6 +41,7 @@ const Game = () => {
     setCurrentPosition(0);
     setArrows(Array(16).fill({ direction: null, color: '#E0E0E0' }));
     setTimerActive(false);
+    // We don't reset the timer here, allowing it to display the final time
   };
 
   const restartGame = () => {
@@ -117,7 +118,7 @@ const Game = () => {
             currentArrow={currentLevel === 1 ? currentArrow : null}
             arrows={currentLevel === 2 ? arrows : null}
           />
-          <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} />
+          <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} gameFinished={gameFinished} />
         </View>
         <View style={styles.buttonContainer}>
           {!gameStarted && !gameFinished ? (
