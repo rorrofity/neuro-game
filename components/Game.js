@@ -40,8 +40,7 @@ const Game = () => {
     const directions = ['Up', 'Down', 'Left', 'Right'];
     return Array(16).fill(null).map(() => ({
       direction: directions[Math.floor(Math.random() * directions.length)],
-      color: '#E0E0E0',
-      active: false
+      color: '#E0E0E0'
     }));
   };
 
@@ -76,7 +75,7 @@ const Game = () => {
         setCurrentArrow(newArrow);
       } else {
         const newArrows = [...arrows];
-        newArrows[currentPosition] = { ...newArrows[currentPosition], color: newColor };
+        newArrows[currentPosition] = { ...newArrows[currentPosition], color: newColor, active: true };
         setArrows(newArrows);
       }
 
@@ -154,27 +153,20 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   buttonContainer: {
-    position: 'relative',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     width: '100%',
     maxWidth: 600,
-    height: 50,
     marginTop: 20,
   },
   startButton: {
-    position: 'absolute',
-    bottom: 0,
-    left: '50%',
-    transform: [{ translateX: -50 }],
+    alignSelf: 'center',
   },
   finishButton: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
+    alignSelf: 'flex-start',
   },
   nextButton: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
+    alignSelf: 'flex-end',
   },
 });
 
