@@ -28,8 +28,8 @@ const Game = () => {
     setTimerActive(false);
     setTimerKey(prevKey => prevKey + 1); // This will reset the timer
     setArrows(generateInitialArrows());
-    setTimeout(() => setTimerActive(true), 0);
     if (currentLevel === 1) {
+      setTimeout(() => setTimerActive(true), 0);
       generateNewArrow(); // Activate the first arrow immediately for level 1
     }
   };
@@ -92,6 +92,11 @@ const Game = () => {
         const newArrows = [...arrows];
         newArrows[currentPosition] = { ...newArrows[currentPosition], color: newColor, active: true };
         setArrows(newArrows);
+        
+        // Start the timer when the first arrow is activated in level 2
+        if (currentPosition === 0) {
+          setTimerActive(true);
+        }
       }
 
       setCurrentPosition(currentPosition + 1);
