@@ -1,22 +1,19 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const Sidebar = ({ currentLevel, onLevelSelect }) => {
+const Sidebar = ({ currentLevel, onLevelSelect, levels }) => {
   return (
     <View style={styles.sidebar}>
       <Text style={styles.title}>Niveles</Text>
-      <TouchableOpacity
-        style={[styles.levelButton, currentLevel === 1 && styles.activeLevel]}
-        onPress={() => onLevelSelect(1)}
-      >
-        <Text style={styles.levelText}>Nivel 1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.levelButton, currentLevel === 2 && styles.activeLevel]}
-        onPress={() => onLevelSelect(2)}
-      >
-        <Text style={styles.levelText}>Nivel 2</Text>
-      </TouchableOpacity>
+      {levels.map((level) => (
+        <TouchableOpacity
+          key={level}
+          style={[styles.levelButton, currentLevel === level && styles.activeLevel]}
+          onPress={() => onLevelSelect(level)}
+        >
+          <Text style={styles.levelText}>Nivel {level}</Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
