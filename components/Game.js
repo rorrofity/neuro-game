@@ -12,7 +12,7 @@ const Game = () => {
   const [currentArrow, setCurrentArrow] = useState(null);
   const [currentPosition, setCurrentPosition] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(1);
-  const [arrows, setArrows] = useState(Array(16).fill({ direction: null, color: '#E0E0E0', active: false }));
+  const [arrows, setArrows] = useState(Array(16).fill({ direction: null, color: '#E0E0E0', active: false, position: null }));
   const [colorHistory, setColorHistory] = useState([]);
   const [timerActive, setTimerActive] = useState(false);
   const [finalTime, setFinalTime] = useState(0);
@@ -52,10 +52,11 @@ const Game = () => {
 
   const generateInitialArrows = () => {
     const directions = ['Up', 'Down', 'Left', 'Right'];
-    return Array(16).fill(null).map(() => ({
+    return Array(16).fill(null).map((_, index) => ({
       direction: directions[Math.floor(Math.random() * directions.length)],
       color: '#E0E0E0',
-      active: false
+      active: false,
+      position: index
     }));
   };
 
@@ -88,15 +89,31 @@ const Game = () => {
           position: currentPosition,
         };
         setCurrentArrow(newArrow);
-      } else {
+      } else if (currentLevel === 2) {
         const newArrows = [...arrows];
         newArrows[currentPosition] = { ...newArrows[currentPosition], color: newColor, active: true };
         setArrows(newArrows);
-        
-        // Start the timer when the first arrow is activated in level 2
-        if (currentPosition === 0) {
-          setTimerActive(true);
+      } else if (currentLevel === 3) {
+        const newArrows = [...arrows];
+        const inactivePositions = newArrows.map((arrow, index) => arrow.active ? null : index).filter(pos => pos !== null);
+        if (inactivePositions.length > 0) {
+          const randomPosition = inactivePositions[Math.floor(Math.random() * inactivePositions.length)];
+          newArrows[randomPosition] = { ...newArrows[randomPosition], color: newColor, active: true };
+          newArrows.forEach((arrow, index) => {
+            if (arrow.active && index !== randomPosition) {
+              arrow.color = '#A0A0A0'; // Deactivated color
+            }
+          });
+          setArrows(newArrows);
+        } else {
+          finishGame();
+          return;
         }
+      }
+    
+      // Start the timer when the first arrow is activated in level 2 or 3
+      if (currentPosition === 0 && (currentLevel === 2 || currentLevel === 3)) {
+        setTimerActive(true);
       }
 
       setCurrentPosition(currentPosition + 1);
@@ -121,7 +138,7 @@ const Game = () => {
         <View style={styles.boardAndTimer}>
           <Board
             currentArrow={currentLevel === 1 ? currentArrow : null}
-            arrows={currentLevel === 2 ? arrows : null}
+            arrows={currentLevel === 2 || currentLevel === 3 ? arrows : null}
           />
           <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} gameFinished={gameFinished} />
         </View>
