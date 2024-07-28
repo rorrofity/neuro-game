@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Timer = ({ active, onFinish }) => {
+const Timer = ({ active, onFinish, timerKey }) => {
   const [time, setTime] = useState(0);
 
   useEffect(() => {
+    setTime(0);
     let interval;
     if (active) {
       interval = setInterval(() => {
@@ -15,7 +16,7 @@ const Timer = ({ active, onFinish }) => {
       onFinish(time);
     }
     return () => clearInterval(interval);
-  }, [active, onFinish]);
+  }, [active, onFinish, timerKey]);
 
   const formatTime = (ms) => {
     const minutes = Math.floor(ms / 60000);

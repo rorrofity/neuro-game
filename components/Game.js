@@ -15,6 +15,7 @@ const Game = () => {
   const [colorHistory, setColorHistory] = useState([]);
   const [timerActive, setTimerActive] = useState(false);
   const [finalTime, setFinalTime] = useState(0);
+  const [timerKey, setTimerKey] = useState(0);
 
   const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FFA500'];
 
@@ -22,8 +23,10 @@ const Game = () => {
     setGameStarted(true);
     setCurrentPosition(0);
     setColorHistory([]);
-    setTimerActive(true);
+    setTimerActive(false);
+    setTimerKey(prevKey => prevKey + 1);
     setArrows(generateInitialArrows());
+    setTimeout(() => setTimerActive(true), 0);
     if (currentLevel === 1) {
       generateNewArrow(); // Activate the first arrow immediately for level 1
     }
@@ -105,7 +108,7 @@ const Game = () => {
             currentArrow={currentLevel === 1 ? currentArrow : null}
             arrows={currentLevel === 2 ? arrows : null}
           />
-          <Timer active={timerActive} onFinish={setFinalTime} />
+          <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} />
         </View>
         <View style={styles.buttonContainer}>
           {!gameStarted ? (
