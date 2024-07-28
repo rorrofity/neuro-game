@@ -8,6 +8,7 @@ import Timer from './Timer';
 
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameFinished, setGameFinished] = useState(false);
   const [currentArrow, setCurrentArrow] = useState(null);
   const [currentPosition, setCurrentPosition] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(1);
@@ -21,6 +22,7 @@ const Game = () => {
 
   const startGame = () => {
     setGameStarted(true);
+    setGameFinished(false);
     setCurrentPosition(0);
     setColorHistory([]);
     setTimerActive(false);
@@ -34,10 +36,17 @@ const Game = () => {
 
   const finishGame = () => {
     setGameStarted(false);
+    setGameFinished(true);
     setCurrentArrow(null);
     setCurrentPosition(0);
     setArrows(Array(16).fill({ direction: null, color: '#E0E0E0' }));
     setTimerActive(false);
+  };
+
+  const restartGame = () => {
+    setGameFinished(false);
+    setFinalTime(0);
+    startGame();
   };
 
   const generateInitialArrows = () => {
@@ -111,10 +120,17 @@ const Game = () => {
           <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} />
         </View>
         <View style={styles.buttonContainer}>
-          {!gameStarted ? (
+          {!gameStarted && !gameFinished ? (
             <ControlButton
               title="Iniciar"
               onPress={startGame}
+              color="#4ECDC4"
+              style={styles.startButton}
+            />
+          ) : gameFinished ? (
+            <ControlButton
+              title="Reiniciar"
+              onPress={restartGame}
               color="#4ECDC4"
               style={styles.startButton}
             />
