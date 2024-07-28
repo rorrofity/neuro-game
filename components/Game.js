@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Board from './Board';
 import ControlButton from './ControlButton';
 
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [currentArrow, setCurrentArrow] = useState(null);
+  const [currentPosition, setCurrentPosition] = useState(0);
 
   const startGame = () => {
     setGameStarted(true);
-    generateNewArrow();
+    setCurrentPosition(0);
+    setCurrentArrow(null);
   };
 
   const finishGame = () => {
     setGameStarted(false);
     setCurrentArrow(null);
+    setCurrentPosition(0);
   };
-
-  const [currentPosition, setCurrentPosition] = useState(0);
 
   const generateNewArrow = () => {
     if (currentPosition < 16) {
@@ -35,24 +36,18 @@ const Game = () => {
     }
   };
 
-  useEffect(() => {
-    if (gameStarted) {
-      generateNewArrow();
-    }
-  }, [gameStarted]);
-
   return (
     <View style={styles.container}>
       <Board currentArrow={currentArrow} />
       <View style={styles.buttonContainer}>
         <ControlButton
-          title={gameStarted ? 'Finish' : 'Start'}
+          title={gameStarted ? 'Terminar' : 'Iniciar'}
           onPress={gameStarted ? finishGame : startGame}
           color={gameStarted ? '#FF6B6B' : '#4ECDC4'}
         />
         {gameStarted && (
           <ControlButton
-            title="Next Arrow"
+            title="Siguiente Flecha"
             onPress={generateNewArrow}
             color="#45B7D1"
           />
