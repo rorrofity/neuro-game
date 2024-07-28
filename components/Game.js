@@ -106,15 +106,16 @@ const Game = () => {
           <Timer active={timerActive} onFinish={setFinalTime} />
         </View>
         <View style={styles.buttonContainer}>
-          {!gameStarted && (
-            <ControlButton
-              title="Iniciar"
-              onPress={startGame}
-              color="#4ECDC4"
-              style={styles.startButton}
-            />
-          )}
-          {gameStarted && (
+          {!gameStarted ? (
+            <View style={styles.startButtonContainer}>
+              <ControlButton
+                title="Iniciar"
+                onPress={startGame}
+                color="#4ECDC4"
+                style={styles.startButton}
+              />
+            </View>
+          ) : (
             <>
               <ControlButton
                 title="Terminar"
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
   },
   gameArea: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 20,
   },
@@ -152,30 +153,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
+    marginBottom: 20,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
     maxWidth: 600,
-    marginTop: 20,
-    position: 'relative',
+  },
+  startButtonContainer: {
+    width: '100%',
+    alignItems: 'center',
   },
   startButton: {
-    position: 'absolute',
-    left: '50%',
-    transform: [{ translateX: -50 }],
-    bottom: 0,
+    alignSelf: 'center',
   },
   finishButton: {
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
+    flex: 1,
+    marginRight: 10,
   },
   nextButton: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
+    flex: 1,
+    marginLeft: 10,
   },
 });
 
