@@ -11,7 +11,7 @@ const Game = () => {
   const [currentArrow, setCurrentArrow] = useState(null);
   const [currentPosition, setCurrentPosition] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(1);
-  const [arrows, setArrows] = useState(Array(16).fill({ direction: null, color: '#E0E0E0' }));
+  const [arrows, setArrows] = useState(Array(16).fill({ direction: null, color: '#E0E0E0', active: false }));
   const [colorHistory, setColorHistory] = useState([]);
   const [timerActive, setTimerActive] = useState(false);
   const [finalTime, setFinalTime] = useState(0);
@@ -23,10 +23,10 @@ const Game = () => {
     setCurrentPosition(0);
     setColorHistory([]);
     setTimerActive(true);
-    if (currentLevel === 2) {
-      setArrows(generateInitialArrows());
+    setArrows(generateInitialArrows());
+    if (currentLevel === 1) {
+      generateNewArrow(); // Activate the first arrow immediately for level 1
     }
-    generateNewArrow(); // Activate the first arrow immediately
   };
 
   const finishGame = () => {
@@ -41,7 +41,8 @@ const Game = () => {
     const directions = ['Up', 'Down', 'Left', 'Right'];
     return Array(16).fill(null).map(() => ({
       direction: directions[Math.floor(Math.random() * directions.length)],
-      color: '#E0E0E0'
+      color: '#E0E0E0',
+      active: false
     }));
   };
 
@@ -81,8 +82,9 @@ const Game = () => {
       }
 
       setCurrentPosition(currentPosition + 1);
+    } else {
+      finishGame();
     }
-    // Remove the automatic finishGame() call here
   };
 
   const handleLevelSelect = (level) => {
