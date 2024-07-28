@@ -107,27 +107,25 @@ const Game = () => {
         </View>
         <View style={styles.buttonContainer}>
           {!gameStarted ? (
-            <View style={styles.startButtonContainer}>
-              <ControlButton
-                title="Iniciar"
-                onPress={startGame}
-                color="#4ECDC4"
-                style={styles.startButton}
-              />
-            </View>
+            <ControlButton
+              title="Iniciar"
+              onPress={startGame}
+              color="#4ECDC4"
+              style={styles.startButton}
+            />
           ) : (
             <>
               <ControlButton
                 title="Terminar"
                 onPress={finishGame}
                 color="#FF6B6B"
-                style={styles.finishButton}
+                style={styles.gameButton}
               />
               <ControlButton
                 title={currentPosition === 16 ? "Terminar" : "Siguiente Flecha"}
                 onPress={currentPosition === 16 ? finishGame : generateNewArrow}
                 color="#45B7D1"
-                style={styles.nextButton}
+                style={styles.gameButton}
               />
             </>
           )}
@@ -154,27 +152,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     marginBottom: 20,
+    maxWidth: 600,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
     maxWidth: 600,
-  },
-  startButtonContainer: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  startButton: {
     alignSelf: 'center',
   },
-  finishButton: {
-    flex: 1,
-    marginRight: 10,
+  startButton: {
+    width: '100%',
   },
-  nextButton: {
+  gameButton: {
     flex: 1,
-    marginLeft: 10,
+    marginHorizontal: 5,
   },
 });
 
