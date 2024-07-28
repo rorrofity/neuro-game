@@ -13,6 +13,7 @@ const Game = () => {
   const [arrows, setArrows] = useState(Array(16).fill({ direction: null, color: '#E0E0E0' }));
   const [colorHistory, setColorHistory] = useState([]);
   const [timerActive, setTimerActive] = useState(false);
+  const [finalTime, setFinalTime] = useState(0);
 
   const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FFA500'];
 
@@ -33,7 +34,6 @@ const Game = () => {
     setCurrentPosition(0);
     setArrows(Array(16).fill({ direction: null, color: '#E0E0E0' }));
     setTimerActive(false);
-    // The timer will not reset to 0 as we're not modifying the Timer component
   };
 
   const generateInitialArrows = () => {
@@ -102,7 +102,7 @@ const Game = () => {
             currentArrow={currentLevel === 1 ? currentArrow : null}
             arrows={currentLevel === 2 ? arrows : null}
           />
-          <Timer active={timerActive} />
+          <Timer active={timerActive} onFinish={setFinalTime} />
         </View>
         <View style={styles.buttonContainer}>
           <ControlButton
@@ -142,8 +142,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     width: '100%',
+    maxWidth: 600,
     marginTop: 20,
   },
 });

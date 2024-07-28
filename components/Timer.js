@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Timer = ({ active }) => {
+const Timer = ({ active, onFinish }) => {
   const [time, setTime] = useState(0);
 
   useEffect(() => {
@@ -12,10 +12,10 @@ const Timer = ({ active }) => {
       }, 10);
     } else {
       clearInterval(interval);
-      setTime(0);
+      onFinish(time);
     }
     return () => clearInterval(interval);
-  }, [active]);
+  }, [active, onFinish]);
 
   const formatTime = (ms) => {
     const minutes = Math.floor(ms / 60000);
@@ -26,6 +26,7 @@ const Timer = ({ active }) => {
 
   return (
     <View style={styles.timerContainer}>
+      <Text style={styles.timerLabel}>Tiempo:</Text>
       <Text style={styles.timerText}>{formatTime(time)}</Text>
     </View>
   );
@@ -34,13 +35,25 @@ const Timer = ({ active }) => {
 const styles = StyleSheet.create({
   timerContainer: {
     marginLeft: 20,
-    padding: 10,
+    padding: 15,
     backgroundColor: '#f0f0f0',
-    borderRadius: 5,
+    borderRadius: 10,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  timerLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: '#333',
   },
   timerText: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
+    color: '#4ECDC4',
   },
 });
 
