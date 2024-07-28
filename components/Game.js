@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import Board from './Board';
 import ControlButton from './ControlButton';
 import Sidebar from './Sidebar';
@@ -158,15 +159,23 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 600,
     marginTop: 20,
+    position: 'relative',
   },
   startButton: {
-    alignSelf: 'center',
+    position: 'absolute',
+    left: '50%',
+    transform: [{ translateX: -50 }],
+    bottom: 0,
   },
   finishButton: {
-    alignSelf: 'flex-start',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
   },
   nextButton: {
-    alignSelf: 'flex-end',
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
   },
 });
 
