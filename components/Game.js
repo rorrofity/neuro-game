@@ -19,12 +19,12 @@ const Game = () => {
   const startGame = () => {
     setGameStarted(true);
     setCurrentPosition(0);
-    setCurrentArrow(null);
     setColorHistory([]);
     setTimerActive(true);
     if (currentLevel === 2) {
       setArrows(generateInitialArrows());
     }
+    generateNewArrow(); // Activate the first arrow immediately
   };
 
   const finishGame = () => {
@@ -33,6 +33,7 @@ const Game = () => {
     setCurrentPosition(0);
     setArrows(Array(16).fill({ direction: null, color: '#E0E0E0' }));
     setTimerActive(false);
+    // The timer will not reset to 0 as we're not modifying the Timer component
   };
 
   const generateInitialArrows = () => {
@@ -79,9 +80,8 @@ const Game = () => {
       }
 
       setCurrentPosition(currentPosition + 1);
-    } else {
-      finishGame();
     }
+    // Remove the automatic finishGame() call here
   };
 
   const handleLevelSelect = (level) => {
@@ -90,10 +90,8 @@ const Game = () => {
   };
 
   useEffect(() => {
-    if (currentPosition === 16) {
-      finishGame();
-    }
-  }, [currentPosition]);
+    // Remove this effect as we no longer want to automatically finish the game
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -114,8 +112,8 @@ const Game = () => {
           />
           {gameStarted && (
             <ControlButton
-              title="Siguiente Flecha"
-              onPress={generateNewArrow}
+              title={currentPosition === 16 ? "Terminar" : "Siguiente Flecha"}
+              onPress={currentPosition === 16 ? finishGame : generateNewArrow}
               color="#45B7D1"
             />
           )}
