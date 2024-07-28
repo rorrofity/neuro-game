@@ -15,7 +15,7 @@ const Board = ({ currentArrow, arrows }) => {
               // Level 2: All arrows are visible
               arrowProps = {
                 direction: arrows[index].direction,
-                color: arrows[index].color,
+                color: arrows[index].color !== '#E0E0E0' ? arrows[index].color : '#E0E0E0',
                 active: arrows[index].color !== '#E0E0E0',
               };
             } else {
