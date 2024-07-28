@@ -38,9 +38,10 @@ const Game = () => {
     setGameStarted(false);
     setGameFinished(true);
     setCurrentArrow(null);
-    setCurrentPosition(0);
-    setArrows(Array(16).fill({ direction: null, color: '#E0E0E0' }));
     setTimerActive(false);
+    
+    // Activate all arrows with their corresponding colors
+    setArrows(prevArrows => prevArrows.map(arrow => ({ ...arrow, active: true })));
   };
 
   const restartGame = () => {
@@ -115,7 +116,8 @@ const Game = () => {
         <View style={styles.boardAndTimer}>
           <Board
             currentArrow={currentLevel === 1 ? currentArrow : null}
-            arrows={currentLevel === 2 ? arrows : null}
+            arrows={arrows}
+            gameFinished={gameFinished}
           />
           <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} />
         </View>

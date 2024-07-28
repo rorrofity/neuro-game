@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Arrow from './Arrow';
 
-const Board = ({ currentArrow, arrows }) => {
+const Board = ({ currentArrow, arrows, gameFinished }) => {
   return (
     <View style={styles.board}>
       {[...Array(4)].map((_, rowIndex) => (
@@ -12,14 +12,21 @@ const Board = ({ currentArrow, arrows }) => {
             let arrowProps;
 
             if (arrows) {
-              // Level 2: All arrows are visible
+              // Level 2 or game finished: All arrows are visible
               arrowProps = {
                 direction: arrows[index].direction,
-                color: arrows[index].active ? arrows[index].color : '#E0E0E0',
-                active: arrows[index].active,
+                color: arrows[index].active || gameFinished ? arrows[index].color : '#E0E0E0',
+                active: arrows[index].active || gameFinished,
+              };
+            } else if (gameFinished) {
+              // Level 1 and game finished: All arrows are visible
+              arrowProps = {
+                direction: arrows[index].direction,
+                color: arrows[index].color,
+                active: true,
               };
             } else {
-              // Level 1: Only current arrow is visible
+              // Level 1 and game not finished: Only current arrow is visible
               arrowProps = {
                 direction: currentArrow && currentArrow.position === index ? currentArrow.direction : null,
                 color: currentArrow && currentArrow.position === index ? currentArrow.color : '#E0E0E0',
