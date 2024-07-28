@@ -136,11 +136,15 @@ const Game = () => {
       <Sidebar currentLevel={currentLevel} onLevelSelect={handleLevelSelect} levels={[1, 2, 3]} />
       <View style={styles.gameArea}>
         <View style={styles.boardAndTimer}>
-          <Board
-            currentArrow={currentLevel === 1 ? currentArrow : null}
-            arrows={currentLevel === 2 || currentLevel === 3 ? arrows : null}
-          />
-          <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} gameFinished={gameFinished} />
+          <View style={styles.timerContainer}>
+            <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} gameFinished={gameFinished} />
+          </View>
+          <View style={styles.boardContainer}>
+            <Board
+              currentArrow={currentLevel === 1 ? currentArrow : null}
+              arrows={currentLevel === 2 || currentLevel === 3 ? arrows : null}
+            />
+          </View>
         </View>
         <View style={styles.buttonContainer}>
           {!gameStarted && !gameFinished ? (
@@ -198,13 +202,20 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     maxWidth: 600,
   },
+  timerContainer: {
+    width: 100, // Adjust this value as needed
+    marginRight: 20, // Add some space between timer and board
+  },
+  boardContainer: {
+    flex: 1,
+  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
     maxWidth: 600,
     alignSelf: 'center',
-    paddingHorizontal: 10, // Add padding to account for the board's padding
+    paddingHorizontal: 10,
   },
   startButton: {
     width: '100%',
