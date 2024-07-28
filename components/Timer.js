@@ -36,24 +36,25 @@ const styles = StyleSheet.create({
   timerContainer: {
     marginLeft: 20,
     padding: 15,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
-    elevation: 3,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,
+    elevation: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   timerLabel: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
     color: '#333',
   },
   timerText: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
     color: '#4ECDC4',
+    fontFamily: 'Roboto',
   },
 });
 
