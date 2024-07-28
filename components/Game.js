@@ -40,7 +40,8 @@ const Game = () => {
     const directions = ['Up', 'Down', 'Left', 'Right'];
     return Array(16).fill(null).map(() => ({
       direction: directions[Math.floor(Math.random() * directions.length)],
-      color: '#E0E0E0'
+      color: '#E0E0E0',
+      active: false
     }));
   };
 
@@ -105,17 +106,29 @@ const Game = () => {
           <Timer active={timerActive} onFinish={setFinalTime} />
         </View>
         <View style={styles.buttonContainer}>
-          <ControlButton
-            title={gameStarted ? 'Terminar' : 'Iniciar'}
-            onPress={gameStarted ? finishGame : startGame}
-            color={gameStarted ? '#FF6B6B' : '#4ECDC4'}
-          />
-          {gameStarted && (
+          {!gameStarted && (
             <ControlButton
-              title={currentPosition === 16 ? "Terminar" : "Siguiente Flecha"}
-              onPress={currentPosition === 16 ? finishGame : generateNewArrow}
-              color="#45B7D1"
+              title="Iniciar"
+              onPress={startGame}
+              color="#4ECDC4"
+              style={styles.startButton}
             />
+          )}
+          {gameStarted && (
+            <>
+              <ControlButton
+                title="Terminar"
+                onPress={finishGame}
+                color="#FF6B6B"
+                style={styles.finishButton}
+              />
+              <ControlButton
+                title={currentPosition === 16 ? "Terminar" : "Siguiente Flecha"}
+                onPress={currentPosition === 16 ? finishGame : generateNewArrow}
+                color="#45B7D1"
+                style={styles.nextButton}
+              />
+            </>
           )}
         </View>
       </View>
@@ -141,11 +154,27 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    position: 'relative',
     width: '100%',
     maxWidth: 600,
+    height: 50,
     marginTop: 20,
+  },
+  startButton: {
+    position: 'absolute',
+    bottom: 0,
+    left: '50%',
+    transform: [{ translateX: -50 }],
+  },
+  finishButton: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+  },
+  nextButton: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
   },
 });
 
