@@ -135,16 +135,14 @@ const Game = () => {
     <View style={styles.container}>
       <Sidebar currentLevel={currentLevel} onLevelSelect={handleLevelSelect} levels={[1, 2, 3]} />
       <View style={styles.gameArea}>
-        <View style={styles.boardAndTimer}>
-          <View style={styles.timerContainer}>
-            <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} gameFinished={gameFinished} />
-          </View>
-          <View style={styles.boardContainer}>
-            <Board
-              currentArrow={currentLevel === 1 ? currentArrow : null}
-              arrows={currentLevel === 2 || currentLevel === 3 ? arrows : null}
-            />
-          </View>
+        <View style={styles.timerContainer}>
+          <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} gameFinished={gameFinished} />
+        </View>
+        <View style={styles.boardContainer}>
+          <Board
+            currentArrow={currentLevel === 1 ? currentArrow : null}
+            arrows={currentLevel === 2 || currentLevel === 3 ? arrows : null}
+          />
         </View>
         <View style={styles.buttonContainer}>
           {!gameStarted && !gameFinished ? (
@@ -194,20 +192,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  boardAndTimer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: 20,
-    maxWidth: 600,
-  },
   timerContainer: {
-    width: 100, // Adjust this value as needed
-    marginRight: 20, // Add some space between timer and board
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 20,
   },
   boardContainer: {
-    flex: 1,
+    width: '100%',
+    aspectRatio: 1,
+    maxWidth: 600,
+    maxHeight: 600,
+    marginBottom: 20,
   },
   buttonContainer: {
     flexDirection: 'row',
