@@ -31,7 +31,7 @@ const Timer = ({ active, onFinish, timerKey, gameFinished }) => {
 
   return (
     <View style={styles.timerContainer}>
-      <Text style={styles.timerLabel}>Tiempo:</Text>
+      <Text style={styles.timerLabel}>Tiempo: </Text>
       <Text style={styles.timerText}>{formatTime(time)}</Text>
     </View>
   );
@@ -39,6 +39,8 @@ const Timer = ({ active, onFinish, timerKey, gameFinished }) => {
 
 const styles = StyleSheet.create({
   timerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginLeft: 20,
     padding: 15,
     backgroundColor: '#FFFFFF',
@@ -50,13 +52,13 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
   timerLabel: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 5,
     color: '#333',
+    marginRight: 10,
   },
   timerText: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#4ECDC4',
     fontFamily: 'Roboto',
