@@ -133,7 +133,7 @@ const Game = () => {
 
   return (
     <View style={styles.container}>
-      <Sidebar currentLevel={currentLevel} onLevelSelect={handleLevelSelect} />
+      <Sidebar currentLevel={currentLevel} onLevelSelect={handleLevelSelect} levels={[1, 2, 3]} />
       <View style={styles.gameArea}>
         <View style={styles.boardAndTimer}>
           <Board
