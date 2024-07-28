@@ -160,13 +160,13 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 600,
     alignSelf: 'center',
+    paddingHorizontal: 10, // Add padding to account for the board's padding
   },
   startButton: {
     width: '100%',
   },
   gameButton: {
     flex: 1,
-    marginHorizontal: 5,
   },
 });
 
