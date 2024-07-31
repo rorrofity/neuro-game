@@ -20,3 +20,7 @@ To run the game locally:
 ## Deployment
 
 This game is deployed using GitHub Pages. Any changes pushed to the `gh-pages` branch will be automatically deployed.
+
+You can access the deployed game at: https://[your-github-username].github.io/arrow-game/
+
+Replace [your-github-username] with your actual GitHub username.
