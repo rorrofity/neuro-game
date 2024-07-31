@@ -1,48 +1,52 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const Sidebar = ({ currentLevel, onLevelSelect, levels }) => {
   return (
-    <View style={styles.sidebar}>
-      <Text style={styles.title}>Niveles</Text>
+    <div style={styles.sidebar}>
+      <h2 style={styles.title}>Niveles</h2>
       {levels.map((level) => (
-        <TouchableOpacity
+        <button
           key={level}
-          style={[styles.levelButton, currentLevel === level && styles.activeLevel]}
-          onPress={() => onLevelSelect(level)}
+          style={{
+            ...styles.levelButton,
+            ...(currentLevel === level ? styles.activeLevel : {})
+          }}
+          onClick={() => onLevelSelect(level)}
         >
-          <Text style={styles.levelText}>Nivel {level}</Text>
-        </TouchableOpacity>
+          Nivel {level}
+        </button>
       ))}
-    </View>
+    </div>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   sidebar: {
-    width: 150,
+    width: '150px',
     backgroundColor: '#f0f0f0',
-    padding: 20,
-    borderRightWidth: 1,
-    borderColor: '#e0e0e0',
+    padding: '20px',
+    borderRight: '1px solid #e0e0e0',
   },
   title: {
-    fontSize: 18,
+    fontSize: '18px',
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: '20px',
   },
   levelButton: {
-    padding: 10,
-    marginBottom: 10,
+    padding: '10px',
+    marginBottom: '10px',
     backgroundColor: '#e0e0e0',
-    borderRadius: 5,
+    borderRadius: '5px',
+    border: 'none',
+    width: '100%',
+    textAlign: 'left',
+    cursor: 'pointer',
+    fontSize: '16px',
   },
   activeLevel: {
     backgroundColor: '#4ECDC4',
+    color: 'white',
   },
-  levelText: {
-    fontSize: 16,
-  },
-});
+};
 
 export default Sidebar;
