@@ -1,20 +1,22 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
 import Game from './components/Game';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <div style={styles.container}>
       <Game />
-    </SafeAreaView>
+    </div>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '100vh',
     backgroundColor: '#F0F0F0',
   },
-});
+};
 
 export default App;
