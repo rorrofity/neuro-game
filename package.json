@@ -1,43 +1,26 @@
 {
   "name": "neurological-rehabilitation-game",
   "version": "1.0.0",
+  "description": "A simple web-based arrow game for neurological rehabilitation",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
-  },
-  "dependencies": {
-    "@expo/vector-icons": "^13.0.0",
-    "expo": "^48.0.0",
-    "expo-status-bar": "~1.4.4",
-    "expo-linear-gradient": "~12.1.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-native": "0.71.14",
-    "react-native-web": "~0.18.10",
-    "react-native-svg": "13.4.0",
-    "@expo/webpack-config": "^0.17.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "expo-cli": "^4.0.17"
-  },
-  "private": true
-}
-{
-  "name": "arrow-game",
-  "version": "1.0.0",
-  "description": "A simple web-based arrow game",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "webpack serve --mode development --open",
+    "web": "expo start --web",
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@expo/vector-icons": "^13.0.0",
+    "@expo/webpack-config": "^0.17.0",
+    "expo": "^48.0.0",
+    "expo-linear-gradient": "~12.1.2",
+    "expo-status-bar": "~1.4.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.71.14",
+    "react-native-svg": "13.4.0",
+    "react-native-web": "~0.18.10"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
@@ -45,10 +28,12 @@
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.6",
+    "expo-cli": "^4.0.17",
     "html-webpack-plugin": "^5.3.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
-  }
+  },
+  "private": true
 }
