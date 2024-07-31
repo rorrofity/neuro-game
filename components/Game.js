@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import Board from './Board';
 import ControlButton from './ControlButton';
 import Sidebar from './Sidebar';
@@ -132,19 +130,19 @@ const Game = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <div style={styles.container}>
       <Sidebar currentLevel={currentLevel} onLevelSelect={handleLevelSelect} levels={[1, 2, 3]} />
-      <View style={styles.gameArea}>
-        <View style={styles.timerContainer}>
+      <div style={styles.gameArea}>
+        <div style={styles.timerContainer}>
           <Timer active={timerActive} onFinish={setFinalTime} timerKey={timerKey} gameFinished={gameFinished} />
-        </View>
-        <View style={styles.boardContainer}>
+        </div>
+        <div style={styles.boardContainer}>
           <Board
             currentArrow={currentLevel === 1 ? currentArrow : null}
             arrows={currentLevel === 2 || currentLevel === 3 ? arrows : null}
           />
-        </View>
-        <View style={styles.buttonContainer}>
+        </div>
+        <div style={styles.buttonContainer}>
           {!gameStarted && !gameFinished ? (
             <ControlButton
               title="Iniciar"
@@ -175,42 +173,47 @@ const Game = () => {
               />
             </>
           )}
-        </View>
-      </View>
-    </View>
+        </div>
+      </div>
+    </div>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    flex: 1,
+    display: 'flex',
     flexDirection: 'row',
+    height: '100vh',
   },
   gameArea: {
     flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 20,
+    padding: '20px',
   },
   timerContainer: {
     width: '100%',
-    alignItems: 'center',
-    marginBottom: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '20px',
   },
   boardContainer: {
     width: '100%',
-    aspectRatio: 1,
-    maxWidth: 600,
-    maxHeight: 600,
-    marginBottom: 20,
+    aspectRatio: '1',
+    maxWidth: '600px',
+    maxHeight: '600px',
+    marginBottom: '20px',
   },
   buttonContainer: {
+    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    maxWidth: 600,
-    alignSelf: 'center',
-    paddingHorizontal: 10,
+    maxWidth: '600px',
+    paddingLeft: '10px',
+    paddingRight: '10px',
   },
   startButton: {
     width: '100%',
@@ -218,6 +221,6 @@ const styles = StyleSheet.create({
   gameButton: {
     flex: 1,
   },
-});
+};
 
 export default Game;
