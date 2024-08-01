@@ -14,6 +14,18 @@ module.exports = async function(env, argv) {
     sideEffects: true,
   });
 
+  // Add a new rule for JS files
+  config.module.rules.push({
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env', '@babel/preset-react']
+      }
+    }
+  });
+
   config.resolve.alias = {
     ...config.resolve.alias,
     'react-native$': 'react-native-web',
