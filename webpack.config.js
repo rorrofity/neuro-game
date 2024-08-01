@@ -8,6 +8,7 @@ module.exports = async function(env, argv) {
   config.module.rules.push({
     test: /\.css$/,
     use: ['style-loader', 'css-loader'],
+    exclude: /node_modules/,
   });
 
   config.resolve.alias = {
