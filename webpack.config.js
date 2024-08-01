@@ -11,6 +11,12 @@ module.exports = async function(env, argv) {
     exclude: /node_modules/,
   });
 
+  // Ensure that .css files are processed by css-loader before other loaders
+  config.module.rules.unshift({
+    test: /\.css$/,
+    use: ['css-loader'],
+  });
+
   config.resolve.alias = {
     ...config.resolve.alias,
     'react-native$': 'react-native-web',
