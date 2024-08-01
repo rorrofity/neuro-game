@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.js": "/neuro-game/static/js/main.7391656a.js",
+    "static/js/795.8a10938d.js": "/neuro-game/static/js/795.8a10938d.js",
+    "index.html": "/neuro-game/index.html",
+    "manifest.json": "/neuro-game/manifest.json",
+    "serve.json": "/neuro-game/serve.json",
+    "main.7391656a.js.map": "/neuro-game/static/js/main.7391656a.js.map",
+    "795.8a10938d.js.map": "/neuro-game/static/js/795.8a10938d.js.map"
+  },
+  "entrypoints": [
+    "static/js/795.8a10938d.js",
+    "static/js/main.7391656a.js"
+  ]
+}

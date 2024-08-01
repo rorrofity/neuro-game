@@ -1,0 +1,8 @@
+{
+  "description": "A simple web-based arrow game for neurological rehabilitation",
+  "display": "standalone",
+  "lang": "en",
+  "name": "neurological-rehabilitation-game",
+  "short_name": "neurological-rehabilitation-game",
+  "start_url": "/?utm_source=web_app_manifest"
+}
