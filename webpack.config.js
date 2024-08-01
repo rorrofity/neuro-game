@@ -4,17 +4,14 @@ const path = require('path');
 module.exports = async function(env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
   
-  // Customize the configuration here
+  // Remove any existing CSS rules
+  config.module.rules = config.module.rules.filter(rule => rule.test.toString() !== '/\\.css$/');
+
+  // Add a new rule for CSS files
   config.module.rules.push({
     test: /\.css$/,
     use: ['style-loader', 'css-loader'],
-    exclude: /node_modules/,
-  });
-
-  // Ensure that .css files are processed by css-loader before other loaders
-  config.module.rules.unshift({
-    test: /\.css$/,
-    use: ['css-loader'],
+    sideEffects: true,
   });
 
   config.resolve.alias = {
