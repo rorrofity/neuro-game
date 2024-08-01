@@ -5,7 +5,7 @@ module.exports = async function(env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
   
   // Remove any existing CSS rules
-  config.module.rules = config.module.rules.filter(rule => rule.test.toString() !== '/\\.css$/');
+  config.module.rules = config.module.rules.filter(rule => rule && rule.test && rule.test.toString() !== '/\\.css$/');
 
   // Add a new rule for CSS files
   config.module.rules.push({
